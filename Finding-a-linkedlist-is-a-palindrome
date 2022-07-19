@@ -1,0 +1,130 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+class palindromeList
+{
+
+	public static void main(String[] args) 
+        {
+    	LinkedList newlist2 = new LinkedList();
+        ArrayList<String> newlist1 = new ArrayList<>(List.of("R", "O", "T", "A", "T", "E"));
+
+		int arraySize =newlist1.size();
+		System.out.println("The ArrayList Size is: "+ arraySize);
+        
+		for(int i=0;i<arraySize;i++)
+        {
+			newlist2.addToTheTop("\n"+newlist1.get(i) );
+		}
+        
+		newlist2.startToEnd();
+		int count=newlist2.count();
+		System.out.println("\n"+"The LinkedList Size is: "+ count);
+        System.out.println("Is it Palindrome word: "+newlist2.verifyPalindrome(count));
+		
+	}
+}
+
+
+class Point 
+{
+	String data;
+	Point next;
+	
+}
+
+
+
+
+class LinkedList 
+{
+	
+	Point head;
+	int pointCount;
+
+	public boolean verifyPalindrome(int count)
+        {
+		
+		boolean isItPalindrome=true;
+		Point m=head;
+		int module=count%2;
+		int upto=0;
+		if(module==0)
+		{
+			upto=count/2;
+		}else
+		{
+			upto=(count+1)/2;
+		}
+	
+		for(int a=count;a>upto;a--)
+		{
+			Point n = head;
+			for(int b=0;b<a-1;b++)
+                {
+				n=n.next;
+			    }
+			System.out.println(n.data);
+			System.out.println(m.data);
+			if(n.data!=m.data)
+			{
+				isItPalindrome=false;
+			}
+			m=m.next;
+		}
+		return isItPalindrome;
+
+	    }
+    
+    
+        public void startToEnd() 
+        {
+		
+		Point point = head;
+		while(point.next!=null) 
+            {
+			System.out.println(point.data);
+			point = point.next;
+		    }
+		System.out.println(point.data);
+	}
+    
+    
+    
+
+	public void addToTheTop(String data) 
+        {
+		Point point = new Point();
+		point.data= data;
+		point.next=null;
+		
+		point.next = head;
+		head = point;	
+	}
+    
+    
+    
+	public int count()
+        {
+
+
+		if(head==null)
+                {
+		pointCount=0;
+		}
+                else
+                {
+		   Point point = head;
+		   while(point.next!=null) 
+                   {
+			pointCount++;
+			point = point.next;
+		    }
+		pointCount++;
+		}
+		return pointCount;
+
+	}
+}
+
