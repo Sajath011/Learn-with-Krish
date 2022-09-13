@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: allocation
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/allocation
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        globally_quoted_identifiers: true
+    show-sql: true
+    kafka:
+      bootstrap-servers: localhost:9092
+
+      spring:
+        main:
+          allow-bean-definition-overriding=true:
